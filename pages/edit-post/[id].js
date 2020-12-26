@@ -26,12 +26,12 @@ function EditPost() {
   const { title, content } = post
   async function updateCurrentPost() {
     if (!title || !content) return
-    await API.graphql({
+    const resp = await API.graphql({
       query: updatePost,
       variables: { post: { title, content, id }},
       authMode: "AMAZON_COGNITO_USER_POOLS"
     })
-    console.log('post successfully updated!')
+    console.log('resp', resp);
     router.push('/my-posts')
   }
   return (
